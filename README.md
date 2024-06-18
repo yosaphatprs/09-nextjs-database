@@ -49,3 +49,19 @@ Hasil:
 ![Hasil](assets-report/3.png)
 
 Hal yang telah saya pelajari adalah bagaimana cara melakukan seeder menggunakan vercel/postgres.
+
+### Soal 4
+
+Capture hasil query Anda dan buatlah laporan di file README.md. Jelaskan apa yang telah Anda pelajari ? Cobalah eksekusi query SQL yang lain sesuai kreasi Anda, capture hasilnya dan jelaskan!
+
+Jangan lupa push dengan pesan commit: "W09: Jawaban soal 4".
+
+### Jawaban Soal 4
+
+Hasil:
+
+![Hasil](assets-report/4-1.png)
+
+Saya mempelajari bagaimana menjalankan SQL query pada database PostgreSQL yang telah saya buat. Saya juga mencoba membuat query SQL yang lain, yaitu menampilkan user, total transaksi dan tanggal transaksi yang telah melakukan transaksi dengan total transaksi lebih dari 10000 serta memiliki status telah terbayar (paid), dengan hasil sebagai berikut:
+
+![Hasil](assets-report/4-2.png)
