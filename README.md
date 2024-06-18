@@ -81,3 +81,11 @@ Hasil:
 Link: https://nextjs-dashboard-yosaphatprs-projects.vercel.app/ 
 
 Yang telah saya pelajari adalah bagaimana cara membuat model dari fetching data.
+
+### Soal 6
+
+Hasil:
+
+![Hasil](assets-report/6.png)
+
+Saya mengubah tampilan chart menjadi lebih baik yang sebelumnya bar bulan desember berada di bawah sehingga tampil normal.
