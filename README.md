@@ -65,3 +65,19 @@ Hasil:
 Saya mempelajari bagaimana menjalankan SQL query pada database PostgreSQL yang telah saya buat. Saya juga mencoba membuat query SQL yang lain, yaitu menampilkan user, total transaksi dan tanggal transaksi yang telah melakukan transaksi dengan total transaksi lebih dari 10000 serta memiliki status telah terbayar (paid), dengan hasil sebagai berikut:
 
 ![Hasil](assets-report/4-2.png)
+
+### Soal 5
+
+Lakukan push, kemudian perhatikan di akun dashboard Vercel project Anda. Capture dan lampirkan link aplikasi Anda yang telah berhasil di deploy, kemudian buatlah laporan di file README.md. Jelaskan apa yang telah Anda pelajari ?
+
+Jangan lupa push dengan pesan commit: "W09: Jawaban soal 5".
+
+### Jawaban Soal 5
+
+Hasil:
+
+![Hasil](assets-report/5.png)
+
+Link: https://nextjs-dashboard-yosaphatprs-projects.vercel.app/ 
+
+Yang telah saya pelajari adalah bagaimana cara membuat model dari fetching data.
