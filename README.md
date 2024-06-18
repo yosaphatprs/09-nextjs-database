@@ -89,3 +89,9 @@ Hasil:
 ![Hasil](assets-report/6.png)
 
 Saya mengubah tampilan chart menjadi lebih baik yang sebelumnya bar bulan desember berada di bawah sehingga tampil normal.
+
+### Soal 7
+
+Hasil:
+
+![Hasil](assets-report/7.png)
