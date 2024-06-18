@@ -28,7 +28,7 @@ export default async function RevenueChart() {
                 <div className="mt-0 bg-white p-4 flex">
                     {/* y-axis */}
                     <div
-                        className="mb-6 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
+                        className="mb-6 mr-5 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
                         style={{ height: `${chartHeight}px` }}
                     >
                         {yAxisLabels.map((label) => (

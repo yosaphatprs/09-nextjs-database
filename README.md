@@ -95,3 +95,71 @@ Saya mengubah tampilan chart menjadi lebih baik yang sebelumnya bar bulan desemb
 Hasil:
 
 ![Hasil](assets-report/7.png)
+
+### Tugas Praktikum
+
+1. Jika Anda perhatikan pada file src\app\page.tsx untuk komponen Card sebenarnya telah dibuat sebagai molecules pada file src\app\components\molecules\card.tsx yaitu komponen CardWrapper. Silakan Anda sesuaikan sehingga dapat tampil seperti gambar berikut.
+
+    Hasil: 
+
+    ![Hasil](assets-report/t-1.png)
+
+    Saya menambahkan kode 
+    ```const card = await fetchCardData();``` pada file src\app\page.tsx, kemudian menyesuaikan kode pada file tersebut sehingga value dapat diambil dari variabel card pada setiap komponen atom Card.
+
+
+
+2. Perhatikan fungsi fetchCardData() (pada file src\model\query.tsx) dari soal nomor 1. Jelaskan maksud kode dan kueri yang dilakukan dalam fungsi tersebut!
+
+    Berikut adalah isi dari fungsi fetchCardData():
+
+    ```tsx
+    export async function fetchCardData() {
+        noStore();
+        try {
+            // You can probably combine these into a single SQL query
+            // However, we are intentionally splitting them to demonstrate
+            // how to initialize multiple queries in parallel with JS.
+            const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
+            const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
+            const invoiceStatusPromise = sql`SELECT
+            SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
+            SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
+            FROM invoices`;
+
+            const data = await Promise.all([
+                invoiceCountPromise,
+                customerCountPromise,
+                invoiceStatusPromise,
+            ]);
+
+            const numberOfInvoices = Number(data[0].rows[0].count ?? '0');
+            const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
+            const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
+            const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
+
+            return {
+                numberOfCustomers,
+                numberOfInvoices,
+                totalPaidInvoices,
+                totalPendingInvoices,
+            };
+        } catch (error) {
+            console.error('Database Error:', error);
+            throw new Error('Failed to fetch card data.');
+        }
+    }
+    ```
+
+    Pertama, akan dipanggil fungsi noStore() yang berfungsi untuk menghapus data yang ada pada cache. Karena pada dasarnya, NextJs akan melakukan caching secara lokal pada setiap pemanggilan API. Sehingga terkadang data yang diambil tidak sesuai dengan data yang ada pada database karena NextJs hanya akan me-return data dari cache. Dengan pemanggilan fungsi noStore(), maka data yang ada pada cache akan dihapus dan data yang diambil akan selalu fresh dari database. Hal ini mirip dengan menambahkan cache: 'no-store' atau { next: { revalidate: 0 }} dalam fetch API di Next.js saat melakukan fetching dengan data dinamis.
+
+    Lalu akan melakukan try pada block code dalam try, jika terjadi error maka akan di-handle oleh catch block.
+
+    Kemudian dalam try terdapat 3 query yang akan dijalankan secara parallel, yaitu:
+    1. Menghitung jumlah invoice yang ada pada database. (invoiceCountPromise)
+    2. Menghitung jumlah customer yang ada pada database. (customerCountPromise)
+    3. Menghitung total amount dari invoice yang telah dibayar dan yang belum dibayar. (invoiceStatusPromise)
+    
+    Selanjutnya, akan diambil data dari hasil query yang telah dijalankan, dan dimasukkan ke dalam variabel yang sesuai.
+
+    Setelah itu data tadi akan di return dalam bentuk object yang berisi jumlah customer, jumlah invoice, total amount invoice yang telah dibayar, dan total amount invoice yang belum dibayar.
